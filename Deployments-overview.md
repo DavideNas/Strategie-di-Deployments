@@ -97,3 +97,32 @@ Questi determinano **come** le nuove versioni del software vengono introdotte ag
 | A/B Testing | Gruppi utenti diversi     | Decisioni basate su dati | Solo per test funzionalità   |
 
 ---
+
+## Tabella Riassuntiva
+
+Qua sotto una **tabella completa** con tutte le principali strategie di deployment, caratteristiche, vantaggi, svantaggi e **quando conviene usarle**. Niente grafici, solo spiegazioni chiare.
+
+| Strategia di Deployment             | Come funziona                                                                 | Vantaggi                                          | Svantaggi                                        | Quando usarla                                                  |
+| ----------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------- |
+| **Manual Deployment**               | Lo sviluppatore copia/rilascia manualmente il codice sul server               | Controllo totale, semplice da capire              | Lento, soggetto a errori, non scalabile          | Progetti molto piccoli o prototipi                             |
+| **Automated Deployment**            | Script o tool automatizzano il rilascio                                       | Riduce errori, più veloce, ripetibile             | Richiede setup iniziale                          | Qualsiasi progetto serio che vuole affidabilità e ripetibilità |
+| **Continuous Deployment (CD)**      | Ogni commit che passa i test viene deployato in produzione automaticamente    | Aggiornamenti rapidi, feedback immediato          | Richiede test solidi, infrastruttura robusta     | Sistemi con aggiornamenti frequenti e alta maturità DevOps     |
+| **Blue-Green Deployment**           | Due ambienti identici: uno attivo (Blue), uno nuovo (Green)                   | Rollback immediato, zero impatto su utenti        | Doppia infrastruttura, più costoso               | Servizi critici che non possono avere downtime                 |
+| **Canary Deployment**               | Nuova versione rilasciata a una piccola percentuale di utenti                 | Riduce rischio di bug su tutti gli utenti         | Complesso da gestire, monitoraggio necessario    | Servizi con grande base utenti, aggiornamenti frequenti        |
+| **Rolling Deployment**              | Aggiornamento graduale sui server uno per uno                                 | Nessun downtime totale, aggiornamenti progressivi | Più complesso, richiede orchestrazione           | Sistemi distribuiti e cluster (es. Kubernetes)                 |
+| **Recreate Deployment**             | Ferma la versione vecchia e avvia quella nuova                                | Semplice da implementare                          | Downtime totale                                  | Applicazioni non critiche, piccole infrastrutture              |
+| **A/B Testing Deployment**          | Due versioni del software rilasciate a gruppi diversi                         | Decisioni basate su dati reali                    | Solo per test funzionalità, complesso da gestire | Nuove feature da validare con utenti reali                     |
+| **Shadow Deployment**               | La nuova versione riceve traffico reale in parallelo senza impattare utenti   | Test di performance e logging realistico          | Richiede infrastruttura aggiuntiva               | Test prestazioni e stabilità prima di rilascio pubblico        |
+| **Feature Toggles / Feature Flags** | Codice deployato, ma funzionalità attivate solo per certi utenti o condizioni | Deploy sicuro, rollback facile                    | Complesso da gestire se ci sono molte flags      | Introduzione graduale di nuove feature, testing controllato    |
+
+---
+
+### 💡 Consigli pratici per scegliere:
+
+1. **Progetti piccoli o sperimentali** → Manual o Automated.
+2. **Aggiornamenti frequenti e DevOps maturi** → Continuous Deployment + Feature Flags.
+3. **Servizi critici, alta disponibilità** → Blue-Green o Canary.
+4. **Cluster o microservizi** → Rolling Deployment.
+5. **Testing di funzionalità o performance** → A/B Testing o Shadow Deployment.
+
+---
